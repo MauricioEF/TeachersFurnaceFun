@@ -93,10 +93,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""28afb1df-1d3c-44fd-a06f-dbe56b4abc69"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Movement"",
                     ""type"": ""Value"",
-                    ""id"": ""0c74db47-63e4-4455-8f8f-27c42795c546"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""id"": ""2344f373-edeb-473d-bf02-de69cd5e5a6c"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -104,79 +104,57 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""3D Vector"",
-                    ""id"": ""232db326-d96d-4432-b8bf-9288e4dad114"",
-                    ""path"": ""3DVector"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""c9f8f5ac-0e3e-4d06-8e67-33abe02fdfa2"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""6e88267d-64d3-40a7-a36a-9739b2ee8993"",
-                    ""path"": """",
+                    ""id"": ""32943d02-3927-4488-a586-724712acc95f"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""90090a3d-8e12-46ce-9bcc-7ab2e441af9e"",
-                    ""path"": """",
+                    ""id"": ""702887f4-dfb5-4ed5-a816-46f2b7f83dfe"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""c1158b72-ae45-4cef-965b-d9ffd2b00809"",
+                    ""id"": ""14219940-bfbb-4cf3-89b2-a8860a5a79cd"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""2fae6a5f-498d-4be4-b942-9dcc6dbd601c"",
+                    ""id"": ""3ee4ee7d-7600-48ab-addb-c14fd30b2a37"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""forward"",
-                    ""id"": ""7d6e0f1a-61ed-4f00-ad74-8a71b55d3068"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""backward"",
-                    ""id"": ""26dc8d98-1a80-49f4-8c8f-cd350237dec5"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -187,7 +165,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 }");
         // BaseControls
         m_BaseControls = asset.FindActionMap("BaseControls", throwIfNotFound: true);
-        m_BaseControls_Move = m_BaseControls.FindAction("Move", throwIfNotFound: true);
+        m_BaseControls_Movement = m_BaseControls.FindAction("Movement", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -268,7 +246,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // BaseControls
     private readonly InputActionMap m_BaseControls;
     private List<IBaseControlsActions> m_BaseControlsActionsCallbackInterfaces = new List<IBaseControlsActions>();
-    private readonly InputAction m_BaseControls_Move;
+    private readonly InputAction m_BaseControls_Movement;
     /// <summary>
     /// Provides access to input actions defined in input action map "BaseControls".
     /// </summary>
@@ -281,9 +259,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public BaseControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "BaseControls/Move".
+        /// Provides access to the underlying input action "BaseControls/Movement".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_BaseControls_Move;
+        public InputAction @Movement => m_Wrapper.m_BaseControls_Movement;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -310,9 +288,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_BaseControlsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_BaseControlsActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
         }
 
         /// <summary>
@@ -324,9 +302,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="BaseControlsActions" />
         private void UnregisterCallbacks(IBaseControlsActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
         }
 
         /// <summary>
@@ -368,11 +346,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IBaseControlsActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Movement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
 }
